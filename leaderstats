@@ -6,14 +6,43 @@ local Players = game:GetService("Players")
 --//Assigments
 local Default = {
   leaderstats = {
-   Wallet = 100,
-   Bank = 0,
+    Wallet = 100,
+    Bank = 0,
   }
 }
 
 --//Functions
-function create()
-   for index, key in 
+function IdentifyInstance(target)
+   if tonumber(target) then
+    return "NumberValue"
+   elseif typeof(target) == "string" then
+    return "StringValue"
+   else
+    return "BoolValue"
+   end
+end
+
+function create(Player : Player)
+
+  --//Code
+  for index, key in Default do
+
+    --//Code
+    local NewFolder = instance.new("Folder")
+    NewFolder.Name = index
+    NewFolder.Parent = Player
+
+    for innerindex, innerkey in key do
+      local NewVariable = instance.new(IdentifyInstance(innerkey))
+      NewVariable.Name = innerindex
+      NewVariable.Value = innerkey
+      NewVariable.Parent = NewFolder
+    end
+  end
 end
 
 --//Code
+Players.PlayerAdded:Connect(function(Player)
+  --//Code
+  create(Player)
+end)
