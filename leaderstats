@@ -1,0 +1,19 @@
+--//Services
+local Players = game:GetService("Players")
+
+--//Directories
+
+--//Assigments
+local Default = {
+  leaderstats = {
+   Wallet = 100,
+   Bank = 0,
+  }
+}
+
+--//Functions
+function create()
+   for index, key in 
+end
+
+--//Code
